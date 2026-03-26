@@ -1,23 +1,23 @@
-import { useMemo } from "react";
-import { useNavigate, useOutletContext, useParams } from "react-router-dom";
-import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
-import { apps } from "../data/apps";
-import { formatDownloads, formatMB } from "../utils/format";
+import { useMemo } from 'react'
+import { useNavigate, useOutletContext, useParams } from 'react-router-dom'
+import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from 'recharts'
+import { apps } from '../data/apps'
+import { formatDownloads, formatMB } from '../utils/format'
 
 export default function AppDetails() {
-  const { installedIds, onInstall } = useOutletContext();
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const numericId = Number(id);
-  const app = apps.find((item) => item.id === numericId);
-  const installed = installedIds.includes(numericId);
+  const { installedIds, onInstall } = useOutletContext()
+  const { id } = useParams()
+  const navigate = useNavigate()
+  const numericId = Number(id)
+  const app = apps.find((item) => item.id === numericId)
+  const installed = installedIds.includes(numericId)
 
   const chartData = useMemo(() => {
-    if (!app) return [];
+    if (!app) return []
     return [...app.ratings]
       .sort((a, b) => Number(b.name[0]) - Number(a.name[0]))
-      .map((rating) => ({ label: rating.name, value: rating.count }));
-  }, [app]);
+      .map((rating) => ({ label: rating.name, value: rating.count }))
+  }, [app])
 
   if (!app) {
     return (
@@ -27,42 +27,48 @@ export default function AppDetails() {
           <h1 className="text-3xl font-bold text-slate-900">OPPS!! APP NOT FOUND</h1>
           <p className="text-sm text-slate-500">The app you are requesting is not found in our system. Please try another app.</p>
           <button
-            onClick={() => navigate("/apps")}
+            onClick={() => navigate('/apps')}
             className="rounded-full bg-violet-500 px-4 py-2 text-sm font-semibold text-white shadow-md"
           >
             Go Back!
           </button>
         </div>
       </div>
-    );
+    )
   }
 
   return (
     <div className="bg-slate-50">
-      <div className="mx-auto max-w-6xl px-6 py-10 space-y-10">
+      <div className="mx-auto max-w-6xl space-y-10 px-6 py-10">
         <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
           <div className="flex flex-col gap-6 md:flex-row md:items-start md:gap-8">
             <div className="flex flex-col items-center gap-4">
-              <div
-                className="h-48 w-48 rounded-xl bg-slate-100 ring-1 ring-slate-200"
-                style={{ backgroundImage: `url(${app.image})`, backgroundSize: "cover", backgroundPosition: "center" }}
-              />
+              <div className="flex h-48 w-48 items-center justify-center rounded-xl bg-white p-5 ring-1 ring-slate-200 shadow-sm">
+                <img src={app.icon || app.image} alt={app.title} className="h-full w-full object-contain" />
+              </div>
               <button
                 onClick={() => onInstall(app.id)}
                 disabled={installed}
                 className={`w-full rounded-lg px-5 py-2 text-sm font-semibold shadow-sm transition ${
-                  installed ? "bg-slate-200 text-slate-500" : "bg-emerald-500 text-white hover:bg-emerald-600"
+                  installed ? 'bg-slate-200 text-slate-500' : 'bg-emerald-500 text-white hover:bg-emerald-600'
                 }`}
               >
-                {installed ? "Installed" : `Install Now (${formatMB(app.size)})`}
+                {installed ? 'Installed' : `Install Now (${formatMB(app.size)})`}
               </button>
             </div>
 
-            <div className="flex-1 space-y-2">
-              <h1 className="text-2xl font-bold text-slate-900">{app.title}</h1>
-              <p className="text-sm text-slate-500">
-                Developed by <span className="font-semibold text-slate-600">{app.companyName}</span>
-              </p>
+            <div className="flex-1 space-y-3">
+              <div className="flex items-center gap-3">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-50 p-2 ring-1 ring-slate-200">
+                  <img src={app.icon || app.image} alt="" className="h-full w-full object-contain" aria-hidden="true" />
+                </div>
+                <div>
+                  <h1 className="text-2xl font-bold text-slate-900">{app.title}</h1>
+                  <p className="text-sm text-slate-500">
+                    Developed by <span className="font-semibold text-slate-600">{app.companyName}</span>
+                  </p>
+                </div>
+              </div>
               <div className="mt-4 grid gap-4 sm:grid-cols-3">
                 <Metric label="Downloads" value={formatDownloads(app.downloads)} icon="/assets/icon-downloads.png" />
                 <Metric label="Average Ratings" value={app.ratingAvg.toFixed(1)} icon="/assets/icon-ratings.png" />
@@ -77,20 +83,20 @@ export default function AppDetails() {
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={chartData} layout="vertical" margin={{ left: 80 }}>
-                <XAxis type="number" hide domain={[0, "dataMax"]} />
-                <YAxis type="category" dataKey="label" tick={{ fill: "#475569", fontSize: 12 }} width={70} />
+                <XAxis type="number" hide domain={[0, 'dataMax']} />
+                <YAxis type="category" dataKey="label" tick={{ fill: '#475569', fontSize: 12 }} width={70} />
                 <Bar dataKey="value" fill="#f97316" radius={[0, 6, 6, 0]} barSize={18} />
               </BarChart>
             </ResponsiveContainer>
           </div>
         </div>
 
-        <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200 space-y-4">
+        <div className="space-y-4 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
           <h2 className="text-xl font-semibold text-slate-900">Description</h2>
           <p className="text-sm leading-relaxed text-slate-700">{app.description}</p>
           <p className="text-sm leading-relaxed text-slate-700">
             A unique feature of this app is the integration of task lists with timers. You can assign each task to a specific Pomodoro session,
-            making your schedule more structured. The built-in analytics show not only how much time you&apos;ve worked but also which tasks consumed the most energy.
+            making your schedule more structured. The built-in analytics show not only how much time you have worked but also which tasks consumed the most energy.
           </p>
           <p className="text-sm leading-relaxed text-slate-700">
             For people who struggle with procrastination, the app provides motivational streaks and achievements. Completing multiple Pomodoro sessions unlocks
@@ -99,7 +105,7 @@ export default function AppDetails() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 function Metric({ label, value, icon }) {
@@ -111,5 +117,5 @@ function Metric({ label, value, icon }) {
         <p className="text-xl font-bold text-slate-900">{value}</p>
       </div>
     </div>
-  );
+  )
 }

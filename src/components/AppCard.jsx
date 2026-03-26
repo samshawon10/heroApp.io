@@ -2,20 +2,22 @@ import { Link } from 'react-router-dom'
 import { formatDownloads, formatMB } from '../utils/format'
 
 export function AppCard({ app }) {
-  const bannerStyle = {
-    backgroundImage: `url(${app.image || '/assets/logo.png'})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-  }
-
   return (
     <Link
       to={`/apps/${app.id}`}
       className="flex flex-col overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-slate-200 transition hover:-translate-y-1 hover:shadow-md"
     >
-      <div className="h-40 w-full bg-slate-200" style={bannerStyle} />
+      <div className="flex h-40 w-full items-center justify-center bg-slate-100 p-3">
+        <img
+          src={app.image || app.icon || '/assets/logo.png'}
+          alt={app.title}
+          className="h-full w-full object-contain"
+        />
+      </div>
       <div className="flex flex-1 flex-col gap-2 p-4">
-        <p className="font-semibold text-slate-900">{app.title}</p>
+        <div className="min-h-[3rem]">
+          <p className="text-sm font-semibold leading-5 text-slate-900">{app.title}</p>
+        </div>
         <p className="text-xs text-slate-500">{app.companyName}</p>
         <div className="flex items-center gap-3 text-xs text-slate-600">
           <span className="flex items-center gap-1 text-emerald-600">

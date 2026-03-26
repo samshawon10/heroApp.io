@@ -1,11 +1,11 @@
-import { useState } from "react";
-import { useOutletContext } from "react-router-dom";
-import { apps } from "../data/apps";
-import { formatDownloads, formatMB } from "../utils/format";
+import { useState } from 'react'
+import { useOutletContext } from 'react-router-dom'
+import { apps } from '../data/apps'
+import { formatDownloads, formatMB } from '../utils/format'
 
 export default function Installation() {
-  const { installedIds, onUninstall } = useOutletContext();
-  const installedApps = apps.filter((app) => installedIds.includes(app.id));
+  const { installedIds, onUninstall } = useOutletContext()
+  const installedApps = apps.filter((app) => installedIds.includes(app.id))
 
   return (
     <div className="bg-slate-100">
@@ -19,25 +19,24 @@ export default function Installation() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 function SortRow({ installedApps, onUninstall }) {
-  const [sort, setSort] = useState("desc");
-  const sorted = [...installedApps].sort((a, b) => (sort === "desc" ? b.downloads - a.downloads : a.downloads - b.downloads));
+  const [sort, setSort] = useState('desc')
+  const sorted = [...installedApps].sort((a, b) => (sort === 'desc' ? b.downloads - a.downloads : a.downloads - b.downloads))
 
   return (
     <div>
       <div className="mb-4 flex items-center justify-between text-sm text-slate-600">
         <p>
-          {sorted.length} {sorted.length === 1 ? "App" : "Apps"} Found
+          {sorted.length} {sorted.length === 1 ? 'App' : 'Apps'} Found
         </p>
         <select
           value={sort}
           onChange={(event) => setSort(event.target.value)}
           className="rounded-lg border border-slate-200 px-3 py-2 text-sm shadow-sm focus:border-violet-400 focus:outline-none"
         >
-          <option value="desc">Sort By Size</option>
           <option value="desc">High-Low (Downloads)</option>
           <option value="asc">Low-High (Downloads)</option>
         </select>
@@ -57,13 +56,13 @@ function SortRow({ installedApps, onUninstall }) {
               className="flex items-center justify-between gap-4 rounded-xl bg-white px-4 py-3 shadow-sm ring-1 ring-slate-200"
             >
               <div className="flex items-center gap-4">
-                <div
-                  className="h-16 w-16 rounded-lg bg-slate-200 ring-1 ring-slate-200"
-                  style={{ backgroundImage: `url(${app.image})`, backgroundSize: "cover", backgroundPosition: "center" }}
-                />
+                <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-white p-2 ring-1 ring-slate-200">
+                  <img src={app.icon || app.image} alt={app.title} className="h-full w-full object-contain" />
+                </div>
                 <div>
                   <p className="font-semibold text-slate-900">{app.title}</p>
-                  <div className="flex items-center gap-3 text-xs text-slate-500">
+                  <p className="text-xs text-slate-500">{app.companyName}</p>
+                  <div className="mt-1 flex items-center gap-3 text-xs text-slate-500">
                     <span className="flex items-center gap-1 text-emerald-600">
                       <img src="/assets/icon-downloads.png" alt="downloads" className="h-4 w-4" />
                       {formatDownloads(app.downloads)}
@@ -87,5 +86,5 @@ function SortRow({ installedApps, onUninstall }) {
         </div>
       )}
     </div>
-  );
+  )
 }
