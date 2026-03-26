@@ -44,7 +44,7 @@ function SortRow({ installedApps, onUninstall }) {
 
       {sorted.length === 0 ? (
         <div className="flex flex-col items-center gap-3 rounded-xl bg-white px-6 py-12 text-center shadow-sm ring-1 ring-slate-200">
-          <img src="/assets/Error-App Not Found.png" alt="No installs" className="h-40" />
+          <img src="/assets/App-Error.png" alt="No installs" className="h-40" />
           <h3 className="text-xl font-semibold text-slate-900">No installations yet</h3>
           <p className="text-sm text-slate-500">Browse the store and install your first app.</p>
         </div>

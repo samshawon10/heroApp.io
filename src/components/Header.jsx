@@ -9,8 +9,9 @@ function Header() {
   return (
     <header className="sticky top-0 z-30 border-b border-slate-200/80 bg-white/95 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3 sm:px-6 lg:px-8">
-        <Link to="/" className="flex shrink-0 items-center gap-2">
+        <Link to="/" className="flex shrink-0 items-center gap-2.5">
           <img src="/assets/logo.png" alt="HERO.IO" className="h-9 w-auto sm:h-10" />
+          <span className="text-lg font-bold tracking-tight text-violet-600">Hero.io</span>
         </Link>
 
         <nav className="hidden items-center justify-center gap-7 md:flex">
@@ -41,7 +42,7 @@ function Header() {
         </nav>
 
         <a
-          href="https://github.com/your-profile"
+          href="https://github.com/samshawon10"
           className="inline-flex shrink-0 items-center gap-2 rounded-md bg-violet-500 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-violet-600"
           target="_blank"
           rel="noreferrer"

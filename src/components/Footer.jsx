@@ -11,16 +11,16 @@ function Footer() {
             <p className="text-xs text-slate-400">Crafted for productive people</p>
           </div>
         </div>
-        <p className="text-sm text-slate-400">Copyright © 2025 - All right reserved</p>
+        <p className="text-sm text-slate-400">Copyright © 2026 - All right reserved</p>
         <div className="flex items-center gap-3 text-slate-200">
           <span className="text-sm font-semibold">Social Links</span>
-          <Link to="#" className="hover:text-violet-300">
+          <Link to="https://shawon-dev-portfolio.vercel.app/#" className="hover:text-violet-300">
             𝕏
           </Link>
-          <Link to="#" className="hover:text-violet-300">
+          <Link to="https://shawon-dev-portfolio.vercel.app/" className="hover:text-violet-300">
             in
           </Link>
-          <Link to="#" className="hover:text-violet-300">
+          <Link to="https://shawon-dev-portfolio.vercel.app/" className="hover:text-violet-300">
             f
           </Link>
         </div>
