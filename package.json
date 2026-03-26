@@ -1,11 +1,11 @@
 {
   "name": "hero-io-app-store",
   "version": "1.0.0",
-  "description": "Hero IO App Store — responsive PWA-style catalog with install tracking, charts, and localStorage sync.",
+  "description": "Hero IO App Store \u2014 responsive PWA-style catalog with install tracking, charts, and localStorage sync.",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "node init && vite",
+    "build": "node init && vite build",
     "preview": "vite preview"
   },
   "dependencies": {

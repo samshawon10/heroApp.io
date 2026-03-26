@@ -7,7 +7,8 @@ Hero.io App Store
 Hero.io App Store is a React and Vite based single-page application for discovering productivity apps. Users can browse featured apps, search all apps, view app details, install apps with LocalStorage support, and manage installed apps from a dedicated installation page.
 
 ## Live Site
-https://ioheroapp.netlify.app/
+- https://ioheroapp.netlify.app/
+- https://hero-app-io-olive.vercel.app/
 
 ## Technologies
 - React 19
