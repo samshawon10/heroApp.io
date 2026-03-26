@@ -6,8 +6,6 @@ dist
 .vite
 
 # Env files
-.env
-.env.local
 
 # Logs
 npm-debug.log*
@@ -19,3 +17,4 @@ pnpm-debug.log*
 .DS_Store
 .idea
 .vscode/
+config.bat
